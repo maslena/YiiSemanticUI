@@ -1,0 +1,40 @@
+ /*
+ * # Semantic UI - 1.8.1 (Customised)
+ */
+
+/*******************************
+         Navigation Bar
+*******************************/
+
+body {
+	overflow-x: hidden !important;
+}
+@media (max-width: 767px) {
+	.ui.grid.main{
+		margin-top: 0px !important;
+	}
+	.ui.vertical.navbar.menu{
+		margin-top: 0px !important;
+	}
+}
+.navbar.container {
+	margin-bottom: 30px;
+	min-height: 5rem !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+.ui.navbar.menu {
+	border-radius: 0 !important;
+}
+.ui.vertical.navbar.menu {
+	width: 100%;
+	display: none;
+	margin-top: 2.6rem !important;
+}
+.ui.vertical.navbar.menu.large {
+	margin-top: 2.8rem !important;
+}
+.ui.vertical.navbar.menu .item {
+	padding-left: 2rem !important;
+	padding-right: 2rem !important;
+}
