@@ -140,7 +140,7 @@ class YiiSemanticUI extends CApplicationComponent {
 			return;
 		}
 
-		$this->clientScript->registerPackage('semantic.js');
+		$this->clientScript->registerScriptFile($this->getAssetsUrl().'/semantic-ui/semantic.js');
 	}
 
 	public function registerSemanticCss() {

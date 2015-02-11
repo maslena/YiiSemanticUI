@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-	public $layout = 'main';
+	public $layout = 'home';
 
 	/**
 	 * This is the default 'index' action that is invoked
@@ -10,10 +10,11 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$navigationConfig = array();
+		$this->render('index');
+	}
 
-		$this->render('index', array(
-			'navigationConfig' => $navigationConfig,
-		));
+	public function actionKitchenSink()
+	{
+		$this->render('index');
 	}
 }

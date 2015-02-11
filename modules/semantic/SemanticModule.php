@@ -2,6 +2,8 @@
 
 class SemanticModule extends CWebModule
 {
+	private $_assetsUrl;
+
 	public function init()
 	{
 		// this method is called when the module is being created
@@ -24,5 +26,12 @@ class SemanticModule extends CWebModule
 		}
 		else
 			return false;
+	}
+
+	public function getAssetsUrl() {
+		if ($this->_assetsUrl === null) {
+			$this->_assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('semantic.assets'));
+		}
+		return $this->_assetsUrl;
 	}
 }
