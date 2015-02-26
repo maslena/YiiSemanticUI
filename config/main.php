@@ -11,6 +11,12 @@ return array(
 	//	'sui',
 	//),
 
+	//autoloading
+	'import'=>array(
+		'sui.helpers.*',
+		'sui.widgets.*',
+	),
+
 	// Loading the Semantic UI Examples Module
 	'modules'=>array(
 		'semantic'=>array(
