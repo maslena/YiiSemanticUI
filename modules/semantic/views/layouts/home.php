@@ -36,8 +36,19 @@
 					<a href="/semantic/collections/breadcrumb" class="item">
 						Breadcrumb
 					</a>
+					<a href="/semantic/collections/form" class="item">
+						Form
+					</a>
 					<a href="/semantic/collections/menu" class="item">
 						Menu
+					</a>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui small inverted header">Modules</div>
+				<div class="menu">
+					<a href="/semantic/modules/checkbox" class="item">
+						Checkbox
 					</a>
 				</div>
 			</div>

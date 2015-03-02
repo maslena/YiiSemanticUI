@@ -34,4 +34,14 @@ return array(
         //'js' => array($this->minify ? 'dropdown.min.js' : 'dropdown.js'),
         //'depends' => array('jquery', 'jquery.ui'),
     //),
+    'button' => array(
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'css' => array($this->minify ? 'button.min.css' : 'button.css'),
+    ),
+    'checkbox' => array(
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'css' => array($this->minify ? 'checkbox.min.css' : 'checkbox.css'),
+        'js' => array($this->minify ? 'checkbox.min.js' : 'checkbox.js'),
+        'depends' => array('jquery', 'jquery.ui'),
+    ),
 );
