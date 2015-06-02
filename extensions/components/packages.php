@@ -10,6 +10,12 @@
  * @var Bootstrap $this
  */
 return array(
+    'gallery' => array(
+        'baseUrl' => $this->getAssetsUrl() . '/slick',
+        'css' => array($this->minify ? 'slick.css' : 'slick.css', 'slick-theme.css'),
+        'js' => array($this->minify ? 'slick.min.js' : 'slick.js'),
+        'depends' => array('jquery', 'jquery.ui'),
+    ),
 	'navbar' => array(
         'baseUrl' => $this->getAssetsUrl() . '/custom/components',
         'css' => array($this->minify ? 'navbar.css' : 'navbar.css'),
