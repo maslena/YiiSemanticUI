@@ -16,6 +16,8 @@
  */
 class SUIGallery extends CWidget {
 	
+	public $theme = null;
+
 	/**
 	 *### .init()
 	 *
@@ -23,6 +25,9 @@ class SUIGallery extends CWidget {
 	 */
 	public function init() {
 		Yii::app()->getClientScript()->registerPackage('gallery');
+		if ($this->theme) {
+			Yii::app()->getClientScript()->registerCssFile($this->theme);
+		}
 	}
 
 	/**

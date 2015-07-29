@@ -26,6 +26,7 @@ class YiiSemanticUI extends CApplicationComponent {
 	public $loadJsInAjax = false;
 	public $semanticCss = true;
 	public $packages = array();
+	public $version = '1.12.3';
 
 	private static $_instance;
 	public $_assetsUrl;
@@ -101,14 +102,14 @@ class YiiSemanticUI extends CApplicationComponent {
 
 	protected function packageCss() {
 		return array('semantic.css' => array(
-			'baseUrl' => $this->enableCdn ? '//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.8.1/' : $this->getAssetsUrl() . '/semantic-ui/',
+			'baseUrl' => $this->enableCdn ? '//cdnjs.cloudflare.com/ajax/libs/semantic-ui/'.$this->version.'/' : $this->getAssetsUrl() . '/semantic-ui/' . $this->version . '/',
 			'css' => array( ($this->minify || $this->enableCdn) ? 'semantic.min.css' : 'semantic.css' ),
 		));
 	}
 
 	protected function packageJs() {
 		return array('semantic.js' => array(
-			'baseUrl' => $this->enableCdn ? '//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.8.1/' : $this->getAssetsUrl() . '/semantic-ui/',
+			'baseUrl' => $this->enableCdn ? '//cdnjs.cloudflare.com/ajax/libs/semantic-ui/'.$this->version.'/' : $this->getAssetsUrl() . '/semantic-ui/' . $this->version . '/',
 			'css' => array( ($this->minify || $this->enableCdn) ? 'semantic.min.js' : 'semantic.js' ),
 		));
 	}
@@ -140,7 +141,7 @@ class YiiSemanticUI extends CApplicationComponent {
 			return;
 		}
 
-		$this->clientScript->registerScriptFile($this->getAssetsUrl().'/semantic-ui/semantic.js');
+		$this->clientScript->registerScriptFile($this->getAssetsUrl().'/semantic-ui/' . $this->version . '/semantic.js');
 	}
 
 	public function registerSemanticCss() {
@@ -156,7 +157,7 @@ class YiiSemanticUI extends CApplicationComponent {
 	 * @see CClientScript::registerScriptFile
 	 */
 	public function registerJs($name, $position = CClientScript::POS_END) {
-		$this->clientScript->registerScriptFile($this->getAssetsUrl() . "/semantic-ui/components/{$name}", $position);
+		$this->clientScript->registerScriptFile($this->getAssetsUrl() . "/semantic-ui/" . $this->version . "/components/{$name}", $position);
 	}
 
 	/**
