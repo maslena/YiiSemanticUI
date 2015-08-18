@@ -23,13 +23,13 @@ return array(
         'depends' => array('jquery', 'jquery.ui'),
     ),
     'dropdown' => array(
-        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/'.$this->version.'/components',
         'css' => array($this->minify ? 'dropdown.min.css' : 'dropdown.css'),
         'js' => array($this->minify ? 'dropdown.min.js' : 'dropdown.js'),
         'depends' => array('transition'),
     ),
     'transition' => array(
-        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/'.$this->version.'/components',
         'css' => array($this->minify ? 'transition.min.css' : 'transition.css'),
         'js' => array($this->minify ? 'transition.min.js' : 'transition.js'),
         'depends' => array('jquery', 'jquery.ui'),
@@ -41,11 +41,11 @@ return array(
         //'depends' => array('jquery', 'jquery.ui'),
     //),
     'button' => array(
-        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/'.$this->version.'/components',
         'css' => array($this->minify ? 'button.min.css' : 'button.css'),
     ),
     'checkbox' => array(
-        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/components',
+        'baseUrl' => $this->getAssetsUrl() . '/semantic-ui/'.$this->version.'/components',
         'css' => array($this->minify ? 'checkbox.min.css' : 'checkbox.css'),
         'js' => array($this->minify ? 'checkbox.min.js' : 'checkbox.js'),
         'depends' => array('jquery', 'jquery.ui'),
