@@ -96,7 +96,7 @@ class YiiSemanticUI extends CApplicationComponent {
 		if (isset($this->_assetsUrl)) {
 			return $this->_assetsUrl;
 		} else {
-			return $this->_assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('sui.assets'), false, -1, $this->republishAssets);
+			return $this->_assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('sui.assets'), true, -1, $this->republishAssets);
 		}
 	}
 
