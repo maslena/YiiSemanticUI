@@ -93,6 +93,7 @@ class YiiSemanticUI extends CApplicationComponent {
 	}
 
 	public function getAssetsUrl() {
+		Yii::app()->getAssetManager()->setBaseUrl(Yii::app()->getBaseUrl(true).'/assets');
 		if (isset($this->_assetsUrl)) {
 			return $this->_assetsUrl;
 		} else {
