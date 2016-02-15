@@ -71,6 +71,12 @@ class SUINavBar extends CWidget {
 	 */
 	public $items = array();
 
+	/**
+	 * @var string version of semantic-ui
+	 */
+	public $version = '1';
+
+
 	// /**
 	//  * @var mixed fix location of the navbar if applicable.
 	//  * Valid values are 'top' and 'bottom'. Defaults to 'top'.
@@ -187,8 +193,16 @@ class SUINavBar extends CWidget {
 		if ($this->id) {
 			echo ' id="'.$this->id.'"';
 		}
-		echo ' class="ui grid navbar container'.$this->wrapperOptions.'">';
-		$this->renderNavBar();
+
+		if (floatval($this->version) >= 2) {
+			echo '>';
+
+			$this->renderNavBarV2();
+		} else {
+			echo ' class="ui grid navbar container'.$this->wrapperOptions.'">';
+
+			$this->renderNavBar();
+		}
 	// 	foreach ($this->items as $item) {
 	// 		if (is_string($item)) {
 	// 			echo $item;
@@ -234,6 +248,22 @@ class SUINavBar extends CWidget {
 		if (in_array('mobile', $this->devices)) {
 			$this->renderMobileNavBar();
 		}
+	}
+
+	private function renderNavBarV2() {
+		echo '<div class="ui top borderless secondary menu ' . $this->htmlOptions['class'] . '">';
+		if ($this->brand !== false) {
+			echo CHtml::openTag('a', $this->brandOptions) . $this->brand . '</a>';
+		} else {
+			unset($this->brandOptions['href']); // spans cannot have a href attribute
+			echo CHtml::openTag('span', $this->brandOptions) . $this->brand . '</span>';
+		}
+		foreach ($this->items as $item) {
+			if (is_string($item)) {
+				echo $item;
+			}
+		}
+		echo '</div>';
 	}
 
 	private function renderMobileNavBar() {
