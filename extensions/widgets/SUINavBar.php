@@ -262,7 +262,8 @@ class SUINavBar extends CWidget {
 			if (is_string($item)) {
 				echo $item;
 			} else {
-				echo $this->renderNavBarItem($item);
+				$renderedNavBarItem = $this->renderNavBarItem($item);
+				echo $renderedNavBarItem['html'];
 			}
 		}
 		echo '</div>';
@@ -270,6 +271,7 @@ class SUINavBar extends CWidget {
 
 	private function renderNavBarItem($item) {
 		$html = NULL;
+		$has_active = false;
 
 		$label = NULL;
 		$type = 'link';
@@ -282,6 +284,9 @@ class SUINavBar extends CWidget {
 			unset($item['type']);
 		}
 
+		if (isset($item['visible']) && !$item['visible']) {
+			return NULL;
+		}
 
 
 		if ($type == 'divider') {
@@ -296,21 +301,33 @@ class SUINavBar extends CWidget {
 			}
 
 			if (Yii::app()->request->requestUri == $item['href']) {
-				$item['class'] .= ' active';
+				$item['class'] .= ' selected';
+				$has_active = true;
 			}
 
 			$html = '<a class="' . $item['class'] . '" href="' . $item['href'] . '">' . $label;
 			if (isset($item['items']) && count($item['items']) > 0) {
+				$html_subitem = NULL;
+				foreach ($item['items'] as $subitem) {
+					if (is_string($subitem)) {
+						$html_subitem .= $subitem;
+					} else {
+						// $html .= $this->renderNavBarItem($subitem);
+						$renderedNavBarItem = $this->renderNavBarItem($subitem);
+						if ($renderedNavBarItem['has_active']) {
+							$has_active = true;
+						}
+						$html_subitem .= $renderedNavBarItem['html'];
+					}
+				}
+				if ($has_active) {
+					$item['class'] .= ' selected';
+				}
+
 				$item['class'] .= ' ui dropdown navbar';
 				$html = '<div class="' . $item['class'] . '">' . $label;
 				$html .= '<div class="menu">';
-				foreach ($item['items'] as $subitem) {
-					if (is_string($subitem)) {
-						$html .= $subitem;
-					} else {
-						$html .= $this->renderNavBarItem($subitem);
-					}
-				}
+				$html .= $html_subitem;
 				$html .= '</div>';
 				$html .='</div>';
 			} else {
@@ -318,7 +335,12 @@ class SUINavBar extends CWidget {
 			}
 		}
 
-		return $html;
+		$return = array(
+			'has_active' => $has_active,
+			'html' => $html,
+		);
+
+		return $return;
 	}
 
 	private function renderMobileNavBar() {
