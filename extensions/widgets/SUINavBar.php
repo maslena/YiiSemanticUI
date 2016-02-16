@@ -261,9 +261,64 @@ class SUINavBar extends CWidget {
 		foreach ($this->items as $item) {
 			if (is_string($item)) {
 				echo $item;
+			} else {
+				echo $this->renderNavBarItem($item);
 			}
 		}
 		echo '</div>';
+	}
+
+	private function renderNavBarItem($item) {
+		$html = NULL;
+
+		$label = NULL;
+		$type = 'link';
+		if (isset($item['label'])) {
+			$label = $item['label'];
+			unset($item['label']);
+		}
+		if (isset($item['type'])) {
+			$type = $item['type'];
+			unset($item['type']);
+		}
+
+
+
+		if ($type == 'divider') {
+			$html = '<div class="ui divider"></div>';
+		} else {
+			if (!isset($item['class'])) {
+				$item['class'] = '';
+			}
+
+			if (!isset($item['href'])) {
+				$item['href'] = '';
+			}
+
+			if (Yii::app()->request->requestUri == $item['href']) {
+				$item['class'] .= ' active';
+			}
+
+			$html = '<a class="' . $item['class'] . '" href="' . $item['href'] . '">' . $label;
+			if (isset($item['items']) && count($item['items']) > 0) {
+				$item['class'] .= ' ui dropdown navbar';
+				$html = '<div class="' . $item['class'] . '">' . $label;
+				$html .= '<div class="menu">';
+				foreach ($item['items'] as $subitem) {
+					if (is_string($subitem)) {
+						$html .= $subitem;
+					} else {
+						$html .= $this->renderNavBarItem($subitem);
+					}
+				}
+				$html .= '</div>';
+				$html .='</div>';
+			} else {
+				$html .= '</a>';
+			}
+		}
+
+		return $html;
 	}
 
 	private function renderMobileNavBar() {
