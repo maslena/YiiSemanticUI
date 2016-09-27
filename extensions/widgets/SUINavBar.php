@@ -317,7 +317,12 @@ class SUINavBar extends CWidget {
 			$html = '<a class="' . $item['class'] . '"'.$target.' href="' . $item['href'] . '">' . $label;
 			if ($isMain) {
 				$link_class = $item['class'];
-				$item['class'] .= ' ui dropdown navbar';
+				if (isset($item['items']) && count($item['items']) > 0) {
+					$item['class'] .= ' ui dropdown navbar';
+				} else {
+					$item['class'] .= ' ui navbar';
+				}
+				
 				$link_class = str_replace('item', '', $link_class);
 				$html = '<div class="' . $item['class'] . '"><a class="' . $link_class . '"'.$target.' href="' . $item['href'] . '">' . $label;
 			}
