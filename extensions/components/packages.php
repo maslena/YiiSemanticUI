@@ -11,7 +11,7 @@
  */
 return array(
     'gallery' => array(
-        'baseUrl' => $this->getAssetsUrl() . '/slick',
+        'baseUrl' => $this->enableCdn ? '//cdn.jsdelivr.net/jquery.slick/1.6.0' : $this->getAssetsUrl() . '/slick',
         'css' => array($this->minify ? 'slick.css' : 'slick.css', 'slick-theme.css'),
         'js' => array($this->minify ? 'slick.min.js' : 'slick.js'),
         'depends' => array('jquery', 'jquery.ui'),
